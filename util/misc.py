@@ -1,5 +1,3 @@
-import glob
-import os
 from pathlib import Path
 
 def listfiles(rootdir, ext=None):
