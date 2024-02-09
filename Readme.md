@@ -1,6 +1,6 @@
 # Scoreing tools for computer literacy
 
-コンピューターの基礎としてのリテラシーを身に付けるために、課題を採点するためのツール。
+コンピューターの基礎としてのリテラシーを身に付けるために、課題を採点する教員のためのツール。
 主に Microsoft Office を用いた課題の採点のためのスクリプト群である。
 
 これ単体ではいかなる課題の採点もできない。
@@ -16,6 +16,8 @@ This alone cannot grade any assignment. It's just an auxiliary tool.
 
 It is mainly aimed at grading literacy education tasks for beginners.
 Therefore, advanced checks for scoring are not performed.
+
+（にほんごでOK）
 
 ## 実行環境
 以下の環境でテストした。
@@ -35,11 +37,16 @@ $ cd scoring_comp_lite
 $ pip install -r requirements.txt
 ```
 
+## テスト方法
 
 
-
-## 実行方法
+## 使用方法
 Pythonを用いて util をインポートして使う。
 
 samplescript フォルダーを見るとよい。
+
+## このツールの開発
+
+どなたでもウェルカム。
+ただし、著作権の放棄と、他者特許侵害など知的財産侵害はないことの確認は投稿者の責任で実施してください。
 
