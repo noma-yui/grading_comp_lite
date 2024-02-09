@@ -56,21 +56,14 @@ tmpstr = tmpstringio.getvalue()
 assert (tmpstr == outstring)
 
 
-##########################
-##########################
-##########################
+#######################################
 print("Check creator and last editor. Excelファイルの作成者と最終更新者の取得")
-# fileName3 = "./sampledata/data3_creator.xlsx"
-
-# wb3 = openpyxl.load_workbook(filename=filename, data_only=False)
 creator, modifiedby = util.excelutil.get_creator_lastmodify(wbmath)
 assert (creator == "Creator01")
 assert (modifiedby == "Editor02")
 
 
-##########################
-##########################
-##########################
+#######################################
 print("Check createdtime and last modified time. Excelファイルの作成日時と最終更新日時")
 createdtime, modifiedtime = util.excelutil.get_createtime_modifiedtime(wbmath,iana_key='Asia/Tokyo')
 expected_createdtime = "2024-01-02T12:04:05+09:00"
