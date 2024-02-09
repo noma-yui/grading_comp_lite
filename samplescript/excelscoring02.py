@@ -136,8 +136,8 @@ fields = [
     "modifiedby",
 ]
 
-with open(outfilename, "w", newline="", encoding='utf-8') as csvfile:
-    writer = csv.DictWriter(csvfile, fieldnames=fields)
+with open(outfilename, "w", newline="", encoding='utf-8') as fout:
+    writer = csv.DictWriter(fout, fieldnames=fields)
     writer.writeheader()
     writer.writerow(tmpdic)
     print("outputfile = {}".format(outfilename))
