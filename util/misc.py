@@ -17,6 +17,8 @@ logger.propagate = False
 def listfiles(rootdir, ext=None):
     """List all files in some directory.
 
+    Files are listed recursively.
+    ディレクトリ以下のファイルを再帰的に探します。
     Example:
         filelist = listfiles("./", ".py")
     Args:
@@ -37,9 +39,34 @@ def listfiles(rootdir, ext=None):
     return list(filter(lambda p: p.is_file(), filelist))
 
 
+def makedirs(rootdir, id_sequence):
+    """Make directory with the given names
+
+    Create multiple directories under rootdir.
+    The names of the directories to be created are given by id_sequence.
+    It only creates the directories in id_sequence and does not delete the existing directories.
+    rootdir 以下に複数のディレクトリを作成します。
+    作成するディレクトリの名前は id_sequence で与えます。
+    id_sequence にあるディレクトリを作成するだけで既存のディレクトリを消すことはしません。
+    Args:
+        rootdir (str | pathlib.Path): directory under which the directories are created
+        id_sequence (list of str | sequence of str): directory names
+
+    """
+    adir = Path(rootdir).absolute().resolve()
+
+    for id1 in id_sequence:
+        dir1 = adir / id1
+        os.makedirs(dir1, exist_ok=True)
+
+
 def encript_xlsxs(rootdir, password, flag_delete=False):
     """Encript all xlsx files in a directory.
 
+    Encript the encrypted xlsx file located under rootdir.
+    If flag_delete is set to True, the unencrypted files will be deleted.
+    rootdir 以下にある暗号化されたxlsxファイルを暗号化します。
+    flag_delete を True にすると、暗号化前のファイルは削除されます。
     Args:
         rootdir (str | pathlib.Path): directory where the xlsx file exist
         password (str): password to encript
@@ -74,12 +101,18 @@ def encript_xlsxs(rootdir, password, flag_delete=False):
                 logger.info("Delete " + str(filepath))
                 filepath.unlink()
         except:
-            logger.warning("Something is wrong for " + str(filepath))
+            logger.warning("Something is wrong for " + str(filepath.resolve()))
 
 
 def decript_xlsxs(rootdir, password, flag_delete=False):
     """Decript all xlsx files in a directory.
 
+    Decrypt the encrypted xlsx file located under rootdir.
+    If flag_delete is set to True, the encrypted files will be deleted.
+    An exception will be thrown if there is an unencrypted xlsx file under rootdir.
+    rootdir 以下にある暗号化されたxlsxファイルを復号します。
+    flag_delete を True にすると、暗号化前のファイルは削除されます。
+    rootdir 以下に暗号化されていないxlsxファイルがあると例外を出します。
     Args:
         rootdir (str | pathlib.Path): directory where the encripted files exist
         password (str): password to decript
@@ -114,4 +147,4 @@ def decript_xlsxs(rootdir, password, flag_delete=False):
                 logger.info("Delete " + str(filepath))
                 filepath.unlink()
         except:
-            logger.warning("something is wrong for " + str(filepath))
+            logger.warning("something is wrong for " + str(filepath.resolve()))
