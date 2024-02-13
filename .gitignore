@@ -162,4 +162,4 @@ cython_debug/
 sampleout.csv
 sampledata/exceldir1_enc
 sampledata/exceldir1_enc_dec
-sampledata/attached_test
+sampledata/email/attached_test

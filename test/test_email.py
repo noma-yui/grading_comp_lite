@@ -9,7 +9,7 @@ utildir = os.path.join(pardir, "../")
 sys.path.append(utildir)
 import util
 
-sampledata_dir = os.path.join(pardir, "../sampledata")
+sampledata_dir = os.path.join(pardir, "../sampledata/email")
 
 filelist = util.misc.listfiles(sampledata_dir, ".eml")
 
@@ -73,10 +73,10 @@ print("#######################################")
 print("Check attached files. 電子メールの添付ファイルをチェックする")
 
 # 添付ファイルのオリジナルファイルのディレクトリ
-attach_orig_dir = os.path.join(pardir, "../sampledata/attached_original/")
+attach_orig_dir = os.path.join(pardir, "../sampledata/email/attached_original/")
 
 # 添付ファイル出力用ディレクトリ
-attach_out_dir = os.path.join(pardir, "../sampledata/attached_test/")
+attach_out_dir = os.path.join(pardir, "../sampledata/email/attached_test/")
 # directory があれば消してからディレクトリを作る
 if os.path.exists(attach_out_dir):
     # 一度全部消す
