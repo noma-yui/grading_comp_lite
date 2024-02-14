@@ -2,6 +2,7 @@ import sys
 import os
 import filecmp
 import shutil
+import pathlib
 
 # append import path
 pardir = os.path.dirname(os.path.abspath(__file__))
@@ -11,7 +12,15 @@ import util
 
 sampledata_dir = os.path.join(pardir, "../sampledata/email")
 
-filelist = util.misc.listfiles(sampledata_dir, ".eml")
+testfiles =[
+    "email_data1.eml",
+    "email_data2.eml",
+    "email_data3_html.eml",
+    "email_data4_attached.eml",
+]
+filelist = []
+for item in testfiles:
+    filelist.append(pathlib.Path(os.path.join(sampledata_dir,item)))
 
 
 #######################################

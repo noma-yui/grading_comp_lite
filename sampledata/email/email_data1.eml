@@ -1,6 +1,5 @@
 To: reciepient_mail@example.com
 Cc: reciepient2_mail@example.com
-Bcc: reciepient3_mail@example.com
 From: sender_mail@example.com
 Subject: hello subject
 Content-Type: text/plain; charset="utf-8"
