@@ -1,4 +1,4 @@
-# Scoreing tools for computer literacy
+# Scoring tools for computer literacy
 
 コンピューターの基礎としてのリテラシーを身に付けるために、課題を採点する教員のためのツール。
 主に Microsoft Office を用いた課題の採点のためのスクリプト群である。
