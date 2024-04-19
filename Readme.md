@@ -26,6 +26,9 @@ Therefore, advanced checks for scoring are not performed.
 - pip 24.0
 - openpyxl 3.1.2
 
+ただし、Wordのファイル比較を実行する create_word_diff 関数を使用する場合は、Microsoft Excelを用いるので、Excelがインストールされた環境で実行しないと動かないので注意。
+
+
 ## セットアップ
 
 ```bash
