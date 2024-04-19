@@ -10,18 +10,17 @@ def print_values_in_range(sheetdata, sheetmath, range_string, out=sys.stdout):
     Print cell-values even if the cell is a formula.
     セルが数式であってもセルの値を表示します。
 
-    Parameters:
-    ----------
-    sheetdata : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to True
-    sheetmath : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to False
-    range_string : str
-        example: `A1:D3`
-    out : instance of I/O
-        default: stdout
+    Args:
+        sheetdata (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to True
+        sheetmath (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to False
+        range_string (str) : Excel style cell range.
+            example: `A1:D3`
+        out (io): instance of I/O
+            default: stdout
+
     Returns:
-    ----------
         None
     """
     (min_col, min_row, max_col,
@@ -41,20 +40,17 @@ def print_formulas_in_range(sheetdata, sheetmath, range_string, out=sys.stdout):
     Otherwire print the cell-value.
     セルのデータが数式なら数式を表示します。そうでなければ値を表示します。
 
-    Parameters:
-    ----------
-    sheetdata : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to True
-    sheetmath : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to False
-    range_string : str
-        Excel style cell range.
-        example: `A1:D3`
-    out : instance of I/O
-        default: stdout
+    Args:
+        sheetdata (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to True
+        sheetmath (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to False
+        range_string (str): Excel style cell range.
+            example: `A1:D3`
+        out (io): instance of I/O
+            default: stdout
 
     Returns:
-    ----------
         None
     """
     (min_col, min_row, max_col,
@@ -74,19 +70,15 @@ def get_creator_lastmodify(workbook):
     Returns the creator and lastmodifiedby of the book.
     ファイルの作成者、最終更新者を返します。
 
-    Parameters:
-    ----------
-    workbook : WorkBook instance of the openpyxl
+    Args:
+        workbook (WorkBook): WorkBook instance of the openpyxl
 
     Returns:
-    ----------
-    (creator, lastmodifiedby) : tuple of strs
-        (作成者, 最終更新者)
+        (creator, lastmodifiedby) : tuple of strs
+            (作成者, 最終更新者)
     """
     return (workbook.properties.creator, workbook.properties.lastModifiedBy)
 
-# 作成日時、最終更新日時
-# return (作成日時, 最終更新日時)
 
 
 def get_createtime_modifiedtime(workbook, iana_key='Asia/Tokyo'):
@@ -97,18 +89,16 @@ def get_createtime_modifiedtime(workbook, iana_key='Asia/Tokyo'):
     ファイルの作成日時、最終更新日時を返します。
     デフォルトのタイムゾーンは日本標準時間です。
 
-    Parameters:
-    ----------
-    workbook : WorkBook instance of the openpyxl
+    Args:
+        workbook (WorkBook): WorkBook instance of the openpyxl
 
-    iana_key : str
-        IANA timezone identifier
+        iana_key (str | optional): IANA timezone identifier
+            default: 'Asia/Tokyo'
 
     Returns:
-    ----------
-    (createdtime, lastmodifiedtime) : tuple of strs
-        (作成者, 最終更新者)
-        The datatimes are isoformat strings.
+        (createdtime, lastmodifiedtime) : tuple of strs
+            (作成者, 最終更新者)
+            The datatimes are isoformat strings.
     """
     # # get datetime with "Z", (UTC)
     createdtime = workbook.properties.created
@@ -129,19 +119,16 @@ def is_given_value(sheetdata, sheetmath, addr, value):
     Returns True if the cell-value at the address is the given value.
     アドレスを指定されたセルの値が与えられた値であれば True を返します。
 
-    Parameters:
-    ----------
-    sheetdata : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to True
-    sheetmath : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to False
-    addr: str
-        Excel style cell address.
-        example: "A3"
-    value : int or str
+    Args:
+        sheetdata (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to True
+        sheetmath (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to False
+        addr (str): Excel style cell address.
+            example: "A3"
+        value (int | str): value
 
     Returns:
-    ----------
         bool
     """
     if sheetdata[addr].value == value:
@@ -158,18 +145,15 @@ def is_formula(sheetdata, sheetmath, addr):
     アドレスを指定されたセルが数式であれば True を返します。
     数式の詳細には触れず、数式であれば True を返します。
 
-    Parameters:
-    ----------
-    sheetdata : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to True
-    sheetmath : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to False
-    addr: str
-        Excel style cell address.
-        example: "A3"
+    Args:
+        sheetdata (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to True
+        sheetmath (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to False
+        addr (str): Excel style cell address.
+            example: "A3"
 
     Returns:
-    ----------
         bool
     """
     if sheetdata[addr].value != sheetmath[addr].value:
@@ -186,24 +170,21 @@ def check_values_in_range(sheetdata, sheetmath, range_string, values):
     and number of cells whose values are equal to the given values.
     範囲を指定されたセルの数と、与えられた値と同じ値を持つセルの数を返します。
 
-    Parameters:
-    ----------
-    sheetdata : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to True
-    sheetmath : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to False
-    range_string : str
-        Excel style cell range.
-        example: `A1:B3`
-    values : Two dimensional values
-        Row-major two dimensional sequence.
-        example: [[11,12],[21,22],[31,32]]
+    Args:
+        sheetdata (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to True
+        sheetmath (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to False
+        range_string (str): Excel style cell range.
+            example: `A1:B3`
+        values (list of list of int or str): Two dimensional values
+            Row-major two dimensional sequence.
+            example: [[11,12],[21,22],[31,32]]
 
     Returns:
-    ----------
-    (countCells, countTrue) : tuple of ints
-        countCells : total number of cells in the range
-        countTrue : number of cells whose values are equal to the given values
+        (countCells, countTrue) : tuple of ints
+            countCells (int): total number of cells in the range
+            countTrue (int): number of cells whose values are equal to the given values
     """
     (min_col, min_row, max_col,
      max_row) = openpyxl.utils.cell.range_boundaries(range_string)
@@ -228,27 +209,23 @@ def check_values_in_range_float(sheetdata, sheetmath, range_string, values, diff
     範囲を指定されたセルの数と、与えられた値と同じ値を持つと考えられるセルの数を返します。
     わずかな値の差は許容される。
 
-    Parameters:
-    ----------
-    sheetdata : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to True
-    sheetmath : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to False
-    range_string : str
-        Excel style cell range.
-        example: `A1:B3`
-    values : Two dimensional values
-        Row-major two dimensional sequence.
-        example: [[11.1,12.1],[21.1,22.1],[31.1,32.1]]
-    diffval : float
-        acceptable deviation
-        10.12 and 10.123 are considerd to be the same if diffval is 0.01 .
+    Args:
+        sheetdata (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to True
+        sheetmath (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to False
+        range_string (str): Excel style cell range.
+            example: `A1:B3`
+        values (list of list of int or str): Two dimensional values
+            Row-major two dimensional sequence.
+            example: [[11.1,12.1],[21.1,22.1],[31.1,32.1]]
+        diffval (float): Acceptable deviation
+            10.12 and 10.123 are considerd to be the same if diffval is 0.01 .
 
     Returns:
-    ----------
-    (countCells, countTrue) : tuple of ints
-        countCells : total number of cells in the range
-        countTrue : number of cells whose values are 'equal' to the given values
+        (countCells, countTrue) : tuple of ints
+            countCells (int): total number of cells in the range
+            countTrue (int): number of cells whose values are 'equal' to the given values
     """
     (min_col, min_row, max_col,
      max_row) = openpyxl.utils.cell.range_boundaries(range_string)
@@ -275,21 +252,18 @@ def check_num_formulas_in_range(sheetdata, sheetmath, range_string):
     範囲を指定されたセルの数と、数式であるセルの数を返します。
     数式の詳細には触れず、数式であればカウントします。
 
-    Parameters:
-    ----------
-    sheetdata : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to True
-    sheetmath : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to False
-    range_string : str
-        Excel style cell range.
-        example: `A1:B3`
+    Args:
+        sheetdata (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to True
+        sheetmath (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to False
+        range_string (str): Excel style cell range.
+            example: `A1:B3`
 
     Returns:
-    ----------
-    (countCells, countTrue) : tuple of ints
-        countCells : total number of cells in the range
-        countTrue : number of cells which are formulas
+        (countCells, countTrue) : tuple of ints
+            countCells (int): total number of cells in the range
+            countTrue (int): number of cells which are formulas
     """
     (min_col, min_row, max_col,
      max_row) = openpyxl.utils.cell.range_boundaries(range_string)
@@ -318,24 +292,20 @@ def check_func_in_range(sheetdata, sheetmath, range_string, func_string):
     数式の詳細には触れず、文字列として関数名を含むかどうかをチェックします。
     その為、SUM と SUMIF などは区別しません。
 
-    Parameters:
-    ----------
-    sheetdata : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to True
-    sheetmath : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to False
-    range_string : str
-        Excel style cell range.
-        example: `A1:B3`
-    func_string : str
-        Excel function name
-        example : 'AVERAGE'
+    Args:
+        sheetdata (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to True
+        sheetmath (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to False
+        range_string (str): Excel style cell range.
+            example: `A1:B3`
+        func_string (str): Excel function name
+            example : 'AVERAGE'
 
     Returns:
-    ----------
-    (countCells, countTrue) : tuple of ints
-        countCells : total number of cells in the range
-        countTrue : number of cells which contains the given function
+        (countCells, countTrue) : tuple of ints
+            countCells (int): total number of cells in the range
+            countTrue (int): number of cells which contains the given function
     """
     (min_col, min_row, max_col,
      max_row) = openpyxl.utils.cell.range_boundaries(range_string)
@@ -357,18 +327,15 @@ def is_integer(sheetdata, sheetmath, addr):
     Returns True if the cell-value at the address is integer.
     アドレスを指定されたセルの値が整数型であれば True を返します。
 
-    Parameters:
-    ----------
-    sheetdata : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to True
-    sheetmath : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to False
-    addr: str
-        Excel style cell address.
-        example: "A3"
+    Args:
+        sheetdata (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to True
+        sheetmath (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to False
+        addr (str): Excel style cell address.
+            example: "A3"
 
     Returns:
-    ----------
         bool
     """
     if isinstance(sheetdata[addr].value, int):
@@ -384,21 +351,18 @@ def check_comp_abs_ref_in_range(sheetdata, sheetmath, range_string):
     and number of cells whose formula contains composite/absolute cell reference.
     範囲を指定されたセルの数と、セルの複合参照もしくは絶対参照を含む数式のセルの数を返します。
 
-    Parameters:
-    ----------
-    sheetdata : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to True
-    sheetmath : Worksheet instance of the openpyxl
-        whose book are opened with data_only set to False
-    addr: str
-        Excel style cell address.
-        example: "A3"
+    Args:
+        sheetdata (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to True
+        sheetmath (Worksheet): Worksheet instance of the openpyxl
+            whose book are opened with data_only set to False
+        addr (str): Excel style cell address.
+            example: "A3"
 
     Returns:
-    ----------
-    (countCells, countTrue) : tuple of ints
-        countCells : total number of cells in the range
-        countTrue : number of cells which contains composite/absolute cell reference
+        (countCells, countTrue) : tuple of ints
+            countCells (int): total number of cells in the range
+            countTrue (int): number of cells which contains composite/absolute cell reference
     """
     return check_func_in_range(sheetdata, sheetmath, range_string, func_string="$")
 

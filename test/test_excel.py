@@ -54,6 +54,7 @@ util.excelutil.print_formulas_in_range(sheetdata=sheetData, sheetmath=sheetMath,
                                 out = tmpstringio)
 tmpstr = tmpstringio.getvalue()
 assert (tmpstr == outstring)
+print("OK")
 
 
 #######################################
@@ -61,15 +62,17 @@ print("Check creator and last editor. Excelファイルの作成者と最終更�
 creator, modifiedby = util.excelutil.get_creator_lastmodify(wbmath)
 assert (creator == "Creator01")
 assert (modifiedby == "Editor02")
+print("OK")
 
 
 #######################################
 print("Check createdtime and last modified time. Excelファイルの作成日時と最終更新日時")
-createdtime, modifiedtime = util.excelutil.get_createtime_modifiedtime(wbmath,iana_key='Asia/Tokyo')
+createdtime, modifiedtime = util.excelutil.get_createtime_modifiedtime(wbmath, iana_key='Asia/Tokyo')
 expected_createdtime = "2024-01-02T12:04:05+09:00"
 expected_modifiedtime = "2024-11-12T22:14:15+09:00"
 assert (createdtime.isoformat() == expected_createdtime)
 assert (modifiedtime.isoformat() == expected_modifiedtime)
+print("OK")
 
 
 #######################################
@@ -82,6 +85,7 @@ ret1 = util.excelutil.is_given_value(sheetdata=sheetData, sheetmath=sheetMath,
                                    addr="B2",
                                    value=199)
 assert (not ret1)
+print("OK")
 
 
 #######################################
@@ -95,6 +99,7 @@ assert (not ret1)
 ret1 = util.excelutil.is_formula(sheetdata=sheetData, sheetmath=sheetMath,
                                      addr="B6")
 assert (ret1)
+print("OK")
 
 
 #######################################
@@ -119,6 +124,8 @@ refdata2 = [
                                                            values=refdata2)
 assert (countCells == 6)
 assert (countTrue == 3)
+print("OK")
+
 
 #######################################
 print("Check float values in a range. 指定したセル範囲の浮動小数点数が指定した値かどうか")
@@ -131,6 +138,7 @@ diffval = 0.001
                                                            values=refdata, diffval=diffval)
 assert (countCells == 1)
 assert (countTrue == 1)
+print("OK")
 
 
 #######################################
@@ -143,6 +151,7 @@ assert (countTrue == 3)
                                                                  range_string="E12:E14")
 assert (countCells == 3)
 assert (countTrue == 3)
+print("OK")
 
 
 #######################################
@@ -155,6 +164,7 @@ assert (countTrue == 1)
                                                          range_string="D21:D28", func_string="SUM")
 assert (countCells == 8)
 assert (countTrue == 2)
+print("OK")
 
 
 #######################################
@@ -168,6 +178,7 @@ assert (not ret1)
 ret1 = util.excelutil.is_integer(sheetdata=sheetData, sheetmath=sheetMath,
                              addr="D33")
 assert (not ret1)
+print("OK")
 
 
 #######################################
@@ -180,6 +191,7 @@ assert (countTrue == 0)
                                                                  range_string="C54:C56")
 assert (countCells == 3)
 assert (countTrue == 2)
+print("OK")
 
 
 #######################################
@@ -214,6 +226,8 @@ ret1 = util.excelutil_exp.is_aligned_h(sheetdata=sheetData, sheetmath=sheetMath,
                              addr="C41",
                              horizontal="left")
 assert (not ret1)
+print("OK")
+
 
 #######################################
 print("Check vertical alignment. 指定したセルの上下の配置が指定したもの")
@@ -248,7 +262,7 @@ ret1 = util.excelutil_exp.is_aligned_v(sheetdata=sheetData, sheetmath=sheetMath,
                              addr="C41",
                              vertical=None)
 assert (not ret1)
-
+print("OK")
 
 
 #######################################
@@ -259,6 +273,7 @@ assert (ret1)
 ret1 = util.excelutil_exp.is_solidfill(sheetdata=sheetData, sheetmath=sheetMath,
                                addr="C38")
 assert (not ret1)
+print("OK")
 
 
 #######################################
@@ -327,6 +342,8 @@ ret1 = util.excelutil_exp.is_numberformat(sheetdata=sheetData, sheetmath=sheetMa
                                   addr="E66",
                                   number_format="0.000_ ")
 assert (not ret1)
-#
+
+print("OK")
+
 
 
