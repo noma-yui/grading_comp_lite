@@ -1,3 +1,4 @@
 openpyxl>=3.1.2
 msoffcrypto-tool>=5.3.1
-pywin32
+pywin32>=306
+
