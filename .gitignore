@@ -163,5 +163,7 @@ sampleout.csv
 sampledata/exceldir1_enc
 sampledata/exceldir1_enc_dec
 sampledata/email/attached_test
-sampledata/*_cmp.docx
+sampledata/*/*_cmp.docx
+~$*.docx
+
 
