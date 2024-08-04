@@ -7,7 +7,8 @@ import openpyxl
 pardir = os.path.dirname(os.path.abspath(__file__))
 utildir = os.path.join(pardir, "../")
 sys.path.append(utildir)
-import util
+import util.excelutil
+import util.excelutil_exp
 
 
 filename = os.path.join(pardir, "../sampledata/exceldata1.xlsx")
