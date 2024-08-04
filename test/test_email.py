@@ -8,7 +8,7 @@ import pathlib
 pardir = os.path.dirname(os.path.abspath(__file__))
 utildir = os.path.join(pardir, "../")
 sys.path.append(utildir)
-import util
+import util.emailutil
 
 sampledata_dir = os.path.join(pardir, "../sampledata/email")
 
