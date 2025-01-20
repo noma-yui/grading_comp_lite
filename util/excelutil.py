@@ -313,8 +313,8 @@ def check_func_in_range(sheetdata, sheetmath, range_string, func_string):
     countTrue = 0
     for row in sheetmath.iter_rows(min_row=min_row, max_row=max_row,
                                    min_col=min_col, max_col=max_col, values_only=True):
-        countCells += 1
         for cell1 in row:
+            countCells += 1
             if (isinstance(cell1, str)) and \
                     func_string in cell1:
                 countTrue += 1
