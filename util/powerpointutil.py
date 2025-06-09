@@ -44,10 +44,16 @@ def get_createtime_modifiedtime(presentation, iana_key='Asia/Tokyo'):
     # ただし、時間帯情報　timezone はNULLである　つまりシステム依存の時間に見えてしまう。
     # 日本時間に変換
     # 強引にUTCと認識させ、そこから日本時間帯に変換させる
-    tmp = createdtime.replace(tzinfo=datetime.timezone.utc)
-    createdtimeJST = tmp.astimezone(tz=zoneinfo.ZoneInfo(key=iana_key))
-    tmp = modifiedtime.replace(tzinfo=datetime.timezone.utc)
-    modifiedtimeJST = tmp.astimezone(tz=zoneinfo.ZoneInfo(key=iana_key))
+    if createdtime:
+        tmp = createdtime.replace(tzinfo=datetime.timezone.utc)
+        createdtimeJST = tmp.astimezone(tz=zoneinfo.ZoneInfo(key=iana_key))
+    else:
+        createdtimeJST = "Empty DateTime"
+    if modifiedtime:
+        tmp = modifiedtime.replace(tzinfo=datetime.timezone.utc)
+        modifiedtimeJST = tmp.astimezone(tz=zoneinfo.ZoneInfo(key=iana_key))
+    else:
+        modifiedtimeJST = "Empty DateTime"
     return (createdtimeJST, modifiedtimeJST)
 
 
