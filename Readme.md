@@ -1,4 +1,4 @@
-# Scoring tools for computer literacy
+# Computer Literacy Grading Utility
 
 コンピューターの基礎としてのリテラシーを身に付けるために、課題を採点する教員のためのツール。
 主に Microsoft Office を用いた課題の採点のためのスクリプト群である。
@@ -52,4 +52,5 @@ samplescript フォルダーを見るとよい。
 
 どなたでもウェルカム。
 ただし、著作権の放棄と、他者特許侵害など知的財産侵害はないことの確認は投稿者の責任で実施してください。
+
 
